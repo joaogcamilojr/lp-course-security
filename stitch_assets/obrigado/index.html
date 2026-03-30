@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inscrição Confirmada | DevSec Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(156, 255, 147, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#b92902",
+                        "surface-container": "#151a21",
+                        "primary-fixed-dim": "#00ec3b",
+                        "on-secondary": "#004050",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-dim": "#e90036",
+                        "on-tertiary-container": "#000000",
+                        "primary-container": "#00fc40",
+                        "surface-container-low": "#0f141a",
+                        "tertiary-fixed-dim": "#ff7a7c",
+                        "background": "#0a0e14",
+                        "error-dim": "#d53d18",
+                        "on-primary-container": "#005a10",
+                        "surface-container-highest": "#20262f",
+                        "on-background": "#f1f3fc",
+                        "secondary-fixed-dim": "#37d4ff",
+                        "secondary-fixed": "#80deff",
+                        "primary-fixed": "#00fc40",
+                        "tertiary-fixed": "#ff9191",
+                        "on-error-container": "#ffd2c8",
+                        "on-primary-fixed": "#00440a",
+                        "surface-variant": "#20262f",
+                        "inverse-surface": "#f8f9ff",
+                        "secondary-dim": "#00c0ea",
+                        "error": "#ff7351",
+                        "surface-container-high": "#1b2028",
+                        "surface-bright": "#262c36",
+                        "inverse-primary": "#006f16",
+                        "surface-tint": "#9cff93",
+                        "on-secondary-fixed-variant": "#00586d",
+                        "on-surface": "#f1f3fc",
+                        "on-primary-fixed-variant": "#006513",
+                        "on-tertiary-fixed-variant": "#790017",
+                        "surface-dim": "#0a0e14",
+                        "outline": "#72757d",
+                        "on-secondary-fixed": "#003a48",
+                        "tertiary-container": "#fc003b",
+                        "on-tertiary": "#49000a",
+                        "primary": "#9cff93",
+                        "primary-dim": "#00ec3b",
+                        "secondary-container": "#00677f",
+                        "surface": "#0a0e14",
+                        "on-secondary-container": "#eef9ff",
+                        "secondary": "#00cffc",
+                        "on-primary": "#006413",
+                        "outline-variant": "#44484f",
+                        "tertiary": "#ff7073",
+                        "on-tertiary-fixed": "#3a0006",
+                        "on-error": "#450900",
+                        "inverse-on-surface": "#51555c",
+                        "on-surface-variant": "#a8abb3"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 rounded-none bg-[#0a0e14]/80 backdrop-blur-xl border-b border-[#9cff93]/10 shadow-[0_4_20px_rgba(0,0,0,0.5)] h-20 px-6 lg:px-12 flex justify-between items-center mx-auto">
+<div class="text-2xl font-black text-[#9cff93] tracking-tighter hover:drop-shadow-[0_0_10px_#00fc40] font-headline uppercase">
+            DevSec Pro
+        </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-slate-400 hover:text-[#9cff93] transition-colors font-headline tracking-tight font-bold uppercase" href="#">Módulos</a>
+<a class="text-slate-400 hover:text-[#9cff93] transition-colors font-headline tracking-tight font-bold uppercase" href="#">Professor</a>
+<a class="text-slate-400 hover:text-[#9cff93] transition-colors font-headline tracking-tight font-bold uppercase" href="#">FAQ</a>
+</nav>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2 font-headline font-bold uppercase tracking-tight hover:shadow-[0_0_15px_rgba(0,252,64,0.3)] transition-all active:scale-95 duration-100">
+            Garantir Minha Vaga
+        </button>
+</header>
+<main class="flex-grow pt-32 pb-20 px-6 relative overflow-hidden bg-grid-pattern">
+<!-- Live Status Ticker (Brand Identity Component) -->
+<div class="max-w-4xl mx-auto mb-12 flex items-center gap-4 bg-surface-container-low p-2 border-l-4 border-primary">
+<span class="font-mono text-[10px] text-primary bg-primary/10 px-2 py-1 uppercase font-bold">Status: Online</span>
+<div class="overflow-hidden whitespace-nowrap">
+<p class="font-mono text-[10px] text-primary/70 uppercase tracking-widest animate-pulse">
+                    // PROTOCOLO DE ACESSO CONCEDIDO // ENCRYPTING SESSION // WELCOME OPERATIVE //
+                </p>
+</div>
+</div>
+<div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+<!-- 1. Cabeçalho de Sucesso -->
+<div class="mb-12 relative">
+<div class="w-24 h-24 rounded-full flex items-center justify-center bg-primary/10 border border-primary/20 shadow-[0_0_40px_rgba(156,255,147,0.15)] mb-8 mx-auto">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">
+                        verified_user
+                    </span>
+</div>
+<h1 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
+                    Inscrição Confirmada! <br/>
+<span class="text-primary drop-shadow-[0_0_10px_rgba(156,255,147,0.4)]">Bem-vindo ao Protocolo DevSec Pro.</span>
+</h1>
+<p class="font-mono text-sm text-on-surface-variant max-w-xl mx-auto uppercase tracking-wider">
+                    Sua identidade foi verificada. O acesso aos módulos de elite está sendo provisionado em sua conta.
+                </p>
+</div>
+<!-- 2. Próximos Passos (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1 w-full mb-16 bg-outline-variant/20 p-1">
+<!-- Action 1 -->
+<div class="bg-surface-container-high p-8 flex flex-col items-start text-left group hover:bg-surface-bright transition-colors relative">
+<div class="font-mono text-primary text-4xl font-bold mb-6 opacity-30 group-hover:opacity-100 transition-opacity">01</div>
+<span class="material-symbols-outlined text-secondary mb-4 text-3xl">mail</span>
+<h3 class="font-headline text-xl font-bold uppercase mb-2">Verifique seu e-mail</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Enviamos as credenciais de acesso para sua caixa de entrada. Verifique também a pasta de spam.
+                    </p>
+</div>
+<!-- Action 2 -->
+<div class="bg-surface-container-high p-8 flex flex-col items-start text-left group hover:bg-surface-bright transition-colors border-l md:border-l-0 md:border-x border-outline-variant/30">
+<div class="font-mono text-primary text-4xl font-bold mb-6 opacity-30 group-hover:opacity-100 transition-opacity">02</div>
+<span class="material-symbols-outlined text-secondary mb-4 text-3xl">groups</span>
+<h3 class="font-headline text-xl font-bold uppercase mb-2">Comunidade Discord</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Onde a inteligência é compartilhada. Conecte-se com outros especialistas e instrutores.
+                    </p>
+</div>
+<!-- Action 3 -->
+<div class="bg-surface-container-high p-8 flex flex-col items-start text-left group hover:bg-surface-bright transition-colors">
+<div class="font-mono text-primary text-4xl font-bold mb-6 opacity-30 group-hover:opacity-100 transition-opacity">03</div>
+<span class="material-symbols-outlined text-secondary mb-4 text-3xl">play_circle</span>
+<h3 class="font-headline text-xl font-bold uppercase mb-2">Vídeo de Boas-vindas</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Assista ao briefing inicial para entender como navegar na plataforma e acelerar seu aprendizado.
+                    </p>
+</div>
+</div>
+<!-- Video/Hero Section Placeholder -->
+<div class="w-full aspect-video bg-surface-container-lowest border border-outline-variant/20 relative mb-16 overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic high-tech digital interface background with glowing lines and security data visualizations in neon green and blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPJxUi4G1j1EkPYH6benKxlrEI0lSv2vBaXwjXg1A1IChQ_oCApXImTjm2MTq7jieD5eVbJ53UmrX3jotjkA4ji2aQvD8PdRqy3zaBkJJ7nAMFWtafspArltEMjZgUNfIpPk9kkprOuUPPAePQsjU0r3AE0dqb4d5nmp55BpKAajIFINZVK-DPXq6Oa-eFNtOagOhYNWDdoQiqWNMFwjwaLStxbxPTV3hlP48DPzxgGR0RYLhnzW7KhqnI7FS6FqkW-7AQdqRMvIo"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-20 h-20 bg-primary/90 flex items-center justify-center shadow-[0_0_30px_rgba(156,255,147,0.5)] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error animate-ping"></div>
+<span class="font-mono text-[10px] uppercase tracking-widest text-primary">Operação: Briefing_Inicial.mp4</span>
+</div>
+</div>
+<!-- 3. CTA Secundário -->
+<div class="flex flex-col items-center gap-6">
+<p class="font-mono text-xs uppercase tracking-[0.3em] text-on-surface-variant">Acesso Imediato aos Canais de Comunicação</p>
+<a class="inline-flex items-center gap-4 px-10 py-5 bg-surface-container-high border-b-2 border-secondary text-secondary font-headline font-bold uppercase tracking-widest hover:bg-secondary/10 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chat</span>
+                    Grupo Oficial WhatsApp
+                </a>
+<p class="text-slate-500 text-[10px] font-mono uppercase">Link expira em 24 horas para garantir a exclusividade da turma.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#000000] w-full py-12 px-6 border-t border-[#1b2028]">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
+<div class="text-lg font-bold text-[#9cff93] font-headline uppercase tracking-tighter">
+                DevSec Pro
+            </div>
+<div class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-slate-400">
+                © 2024 DEVSEC PRO // ALL PROTOCOLS RESERVED
+            </div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-[#00cffc] font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest transition-colors" href="#">Privacidade</a>
+<a class="text-slate-500 hover:text-[#00cffc] font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest transition-colors" href="#">Termos de Uso</a>
+<a class="text-slate-500 hover:text-[#00cffc] font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest transition-colors" href="#">Certificado</a>
+</div>
+</div>
+</footer>
+</body></html>

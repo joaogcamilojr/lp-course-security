@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevSec Pro: Segurança no Ciclo de Vida do Software</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#b92902",
+              "surface-container": "#151a21",
+              "primary-fixed-dim": "#00ec3b",
+              "on-secondary": "#004050",
+              "surface-container-lowest": "#000000",
+              "tertiary-dim": "#e90036",
+              "on-tertiary-container": "#000000",
+              "primary-container": "#00fc40",
+              "surface-container-low": "#0f141a",
+              "tertiary-fixed-dim": "#ff7a7c",
+              "background": "#0a0e14",
+              "error-dim": "#d53d18",
+              "on-primary-container": "#005a10",
+              "surface-container-highest": "#20262f",
+              "on-background": "#f1f3fc",
+              "secondary-fixed-dim": "#37d4ff",
+              "secondary-fixed": "#80deff",
+              "primary-fixed": "#00fc40",
+              "tertiary-fixed": "#ff9191",
+              "on-error-container": "#ffd2c8",
+              "on-primary-fixed": "#00440a",
+              "surface-variant": "#20262f",
+              "inverse-surface": "#f8f9ff",
+              "secondary-dim": "#00c0ea",
+              "error": "#ff7351",
+              "surface-container-high": "#1b2028",
+              "surface-bright": "#262c36",
+              "inverse-primary": "#006f16",
+              "surface-tint": "#9cff93",
+              "on-secondary-fixed-variant": "#00586d",
+              "on-surface": "#f1f3fc",
+              "on-primary-fixed-variant": "#006513",
+              "on-tertiary-fixed-variant": "#790017",
+              "surface-dim": "#0a0e14",
+              "outline": "#72757d",
+              "on-secondary-fixed": "#003a48",
+              "tertiary-container": "#fc003b",
+              "on-tertiary": "#49000a",
+              "primary": "#9cff93",
+              "primary-dim": "#00ec3b",
+              "secondary-container": "#00677f",
+              "surface": "#0a0e14",
+              "on-secondary-container": "#eef9ff",
+              "secondary": "#00cffc",
+              "on-primary": "#006413",
+              "outline-variant": "#44484f",
+              "tertiary": "#ff7073",
+              "on-tertiary-fixed": "#3a0006",
+              "on-error": "#450900",
+              "inverse-on-surface": "#51555c",
+              "on-surface-variant": "#a8abb3"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        background: rgba(10, 14, 20, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .terminal-glow {
+        text-shadow: 0 0 10px rgba(156, 255, 147, 0.5);
+      }
+      .btn-primary-glow {
+        box-shadow: 0 0 20px rgba(0, 252, 64, 0.3);
+      }
+      .btn-primary-glow:hover {
+        box-shadow: 0 0 30px rgba(0, 252, 64, 0.5);
+      }
+      .cyber-grid {
+        background-image: radial-gradient(rgba(156, 255, 147, 0.05) 1px, transparent 0);
+        background-size: 40px 40px;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 rounded-none bg-[#0a0e14]/80 backdrop-blur-xl border-b border-[#9cff93]/10 shadow-[0_4_20px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center h-20 px-6 lg:px-12 w-full mx-auto max-w-7xl">
+<a class="text-2xl font-black text-[#9cff93] tracking-tighter hover:drop-shadow-[0_0_10px_#00fc40] font-['Space_Grotesk'] uppercase" href="#">
+                DevSec Pro
+            </a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-['Space_Grotesk'] tracking-tight font-bold uppercase text-slate-400 hover:text-[#9cff93] transition-colors" href="#modulos">Módulos</a>
+<a class="font-['Space_Grotesk'] tracking-tight font-bold uppercase text-slate-400 hover:text-[#9cff93] transition-colors" href="#professor">Professor</a>
+<a class="font-['Space_Grotesk'] tracking-tight font-bold uppercase text-slate-400 hover:text-[#9cff93] transition-colors" href="#faq">FAQ</a>
+</div>
+<a class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-['Space_Grotesk'] font-bold uppercase px-6 py-3 text-sm tracking-wider btn-primary-glow transition-all active:scale-95 duration-100 ease-in-out" href="#pricing">
+                Garantir Minha Vaga
+            </a>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden cyber-grid">
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<span class="inline-block font-label text-primary text-xs tracking-[0.3em] mb-4 py-1 px-3 bg-primary/10 border-l-2 border-primary">
+                        [ STATUS: MATRÍCULAS ABERTAS ]
+                    </span>
+<h1 class="font-headline text-5xl lg:text-7xl font-bold leading-none mb-6 tracking-tighter uppercase">
+                        Pare de escrever <span class="text-primary italic underline decoration-primary/30 underline-offset-8">código vulnerável</span> e torne-se o Dev que as empresas disputam.
+                    </h1>
+<p class="text-on-surface-variant text-lg lg:text-xl mb-10 max-w-xl leading-relaxed">
+                        Domine a segurança em todas as fases do SDLC, do desenvolvimento ao deploy, e previna vazamentos de dados com o método DevSec Pro.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 mb-12">
+<a class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-5 text-lg font-bold uppercase text-center btn-primary-glow transition-transform hover:-translate-y-1" href="#pricing">
+                            Quero Garantir Minha Vaga (Lote Promocional)
+                        </a>
+</div>
+<div class="flex flex-wrap items-center gap-8 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label text-[10px] uppercase">Certificado MEC</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<span class="font-label text-[10px] uppercase">Acesso Vitalício</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">code</span>
+<span class="font-label text-[10px] uppercase">Projetos Práticos</span>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="relative aspect-video bg-surface-container-high border-2 border-outline-variant group-hover:border-primary/50 transition-colors overflow-hidden flex items-center justify-center">
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Modern dark technology laboratory with multiple screens showing lines of code and security network diagrams in neon green" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz3mqVbsELqfzEnsdCPtGc1i4YJQlw9IdABZwI4PVDESb3xEZ4PUgEqEysIEB84zMHTDCgYKrUnTKeZpXISLtLi13BT2Hz-XmuV0VTxzGm0WjW-vgkrz8fn1JQlqKPkvrbckP6zy2pP9NQgGMPG4_9BvQeX4V35RehxkmmNHMJAzyE5M_m36daQaN6qnjjiZuaohy61soNr1rvyGnj_DriXZc2NZzgr2iifVCsqczG0vVQkAgNDZo6pcCtoWh-1IAA73OIRi7NogU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<button class="w-20 h-20 bg-primary/90 text-on-primary rounded-full flex items-center justify-center relative z-10 transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="absolute bottom-4 left-4 font-label text-[10px] text-primary/70 uppercase flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> live_feed_connected
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Problem Section -->
+<section class="py-24 bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="font-label text-tertiary text-sm tracking-[0.4em] uppercase mb-4">// Vulnerabilidade Detectada</h2>
+<h3 class="font-headline text-4xl lg:text-5xl font-extrabold uppercase tracking-tight">O Custo Invisível da Insegurança</h3>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Problem 1 -->
+<div class="bg-surface-container-high p-8 border-t-2 border-tertiary/20 hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="report_gmailerrorred">report_gmailerrorred</span>
+<h4 class="font-headline text-xl font-bold mb-4 uppercase">Vazamentos de Dados</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Multas pesadas da LGPD e danos irreversíveis à reputação da sua empresa ou cliente.</p>
+</div>
+<!-- Problem 2 -->
+<div class="bg-surface-container-high p-8 border-t-2 border-tertiary/20 hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="database_off">database_off</span>
+<h4 class="font-headline text-xl font-bold mb-4 uppercase">Ataques Críticos</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">SQL Injection e Broken Access Control ainda são as principais portas de entrada para hackers.</p>
+</div>
+<!-- Problem 3 -->
+<div class="bg-surface-container-high p-8 border-t-2 border-tertiary/20 hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="timer">timer</span>
+<h4 class="font-headline text-xl font-bold mb-4 uppercase">Risco de Carreira</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">O desenvolvedor que ignora segurança está se tornando obsoleto e um risco para os times técnicos.</p>
+</div>
+<!-- Problem 4 -->
+<div class="bg-surface-container-high p-8 border-t-2 border-tertiary/20 hover:border-tertiary transition-colors">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="security_update_warning">security_update_warning</span>
+<h4 class="font-headline text-xl font-bold mb-4 uppercase">Insegurança em Deploy</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Deployar código sem scans de vulnerabilidade é como deixar a porta da frente aberta à noite.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- The Solution Section (Modules Grid) -->
+<section class="py-24 bg-background" id="modulos">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-label text-secondary text-sm tracking-[0.4em] uppercase mb-4">// O Protocolo Sentinel</h2>
+<h3 class="font-headline text-4xl lg:text-5xl font-extrabold uppercase tracking-tight">A Jornada DevSec Pro</h3>
+</div>
+<p class="text-on-surface-variant max-w-md text-sm md:text-right">
+                    Do zero ao especialista: Um currículo desenhado para integrar segurança nativamente no seu workflow de desenvolvimento.
+                </p>
+</div>
+<div class="grid lg:grid-cols-3 gap-6">
+<!-- Module 1 -->
+<div class="group bg-surface-container-high p-8 relative overflow-hidden flex flex-col justify-between min-h-[320px] transition-all duration-300 hover:bg-surface-bright">
+<div class="absolute top-0 right-0 p-4 font-label text-4xl text-on-surface/5 font-black">01</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs uppercase mb-4 block">Foundation Layer</span>
+<h4 class="font-headline text-2xl font-bold mb-4 leading-tight uppercase">Módulo 1: Fundamentos de AppSec &amp; SDLC Seguro.</h4>
+<p class="text-on-surface-variant text-sm">Entenda como a segurança se encaixa no ciclo de vida de desenvolvimento moderno.</p>
+</div>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Module 2 -->
+<div class="group bg-surface-container-high p-8 relative overflow-hidden flex flex-col justify-between min-h-[320px] transition-all duration-300 hover:bg-surface-bright">
+<div class="absolute top-0 right-0 p-4 font-label text-4xl text-on-surface/5 font-black">02</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs uppercase mb-4 block">Threat Defense</span>
+<h4 class="font-headline text-2xl font-bold mb-4 leading-tight uppercase">Módulo 2: Dominando o OWASP Top 10 (Ataque e Defesa).</h4>
+<p class="text-on-surface-variant text-sm">Aprenda a explorar e mitigar as 10 vulnerabilidades mais críticas da web.</p>
+</div>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Module 3 -->
+<div class="group bg-surface-container-high p-8 relative overflow-hidden flex flex-col justify-between min-h-[320px] transition-all duration-300 hover:bg-surface-bright">
+<div class="absolute top-0 right-0 p-4 font-label text-4xl text-on-surface/5 font-black">03</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs uppercase mb-4 block">Automation CI/CD</span>
+<h4 class="font-headline text-2xl font-bold mb-4 leading-tight uppercase">Módulo 3: Segurança em CI/CD &amp; Scan de Vulnerabilidades.</h4>
+<p class="text-on-surface-variant text-sm">Automatize ferramentas SAST, DAST e SCA no seu pipeline de deploy.</p>
+</div>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Module 4 -->
+<div class="group bg-surface-container-high p-8 relative overflow-hidden flex flex-col justify-between min-h-[320px] transition-all duration-300 hover:bg-surface-bright">
+<div class="absolute top-0 right-0 p-4 font-label text-4xl text-on-surface/5 font-black">04</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs uppercase mb-4 block">Identity Access</span>
+<h4 class="font-headline text-2xl font-bold mb-4 leading-tight uppercase">Módulo 4: Autenticação Segura com JWT e OAuth 2.0.</h4>
+<p class="text-on-surface-variant text-sm">Implemente fluxos de autorização robustos sem comprometer a experiência.</p>
+</div>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Module 5 -->
+<div class="group bg-surface-container-high p-8 relative overflow-hidden flex flex-col justify-between min-h-[320px] transition-all duration-300 hover:bg-surface-bright lg:col-span-2">
+<div class="absolute top-0 right-0 p-4 font-label text-4xl text-on-surface/5 font-black">05</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs uppercase mb-4 block">Advanced Offensive</span>
+<h4 class="font-headline text-3xl font-bold mb-4 leading-tight uppercase">Módulo 5: Pentest para Desenvolvedores.</h4>
+<p class="text-on-surface-variant text-base max-w-xl">Pense como um atacante. Aprenda as técnicas de testes de invasão para encontrar brechas antes que outros encontrem.</p>
+</div>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Authority Section -->
+<section class="py-24 bg-surface-container-low overflow-hidden" id="professor">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 -z-10"></div>
+<div class="border-4 border-primary p-2">
+<img class="w-full aspect-square object-cover grayscale" data-alt="Professional cybersecurity specialist man portrait with a serious expression in technical lighting surroundings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRFYY3BM4dm_TTUE84irQZgoG4Kjt60EvHR9DsdcUDyOWXB9FXek30GMYPObWk42T6IXyoC69Qwe7XBJiVKPFx4zn0uWIg7jKupguAXe8xZUPBxmd3MmKe7VaJNCDVax5SaP6o66-InZOZnu6BTCoMxofdVO4hdIG144wDW2y69pgMfQwSry01WnRZe1t01T2VJ6TCwb6r4CpyEBG-mL6M3OteCZ64xMsPi1mIbdl5OE91XQS53ElA6TExBlfq4ydHI3bNRISL1ag"/>
+</div>
+<div class="absolute -bottom-6 -right-6 bg-background p-6 border border-outline-variant shadow-2xl">
+<p class="font-label text-primary text-2xl font-bold mb-1">CISSP | CEH</p>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant">Credentials Verified</p>
+</div>
+</div>
+<div>
+<h2 class="font-label text-primary text-sm tracking-[0.4em] uppercase mb-4">// O Especialista</h2>
+<h3 class="font-headline text-4xl lg:text-5xl font-extrabold uppercase mb-8 leading-none">Quem vai te guiar</h3>
+<p class="text-lg text-on-surface-variant mb-6 leading-relaxed">
+                        Rodrigo "Sentinel" Silva é Arquiteto de Segurança com mais de 15 anos de experiência protegendo sistemas críticos em fintechs e empresas da Fortune 500.
+                    </p>
+<p class="text-on-surface-variant mb-10 leading-relaxed italic">
+                        "Meu objetivo é transformar a maneira como você escreve código. Segurança não pode ser um pensamento tardio; deve ser o alicerce de todo software de alta qualidade."
+                    </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="flex flex-col">
+<span class="font-headline text-3xl font-bold text-primary">50k+</span>
+<span class="font-label text-[10px] uppercase text-on-surface-variant">Alunos Impactados</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-3xl font-bold text-primary">15y+</span>
+<span class="font-label text-[10px] uppercase text-on-surface-variant">Experiência Real</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof -->
+<section class="py-24 bg-background">
+<div class="max-w-7xl mx-auto px-6 text-center mb-16">
+<h3 class="font-headline text-4xl font-extrabold uppercase tracking-tight">Eles já elevaram seu nível técnico</h3>
+</div>
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-high p-8 flex flex-col justify-between">
+<div>
+<div class="flex gap-1 mb-4">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm italic text-on-surface-variant mb-8 leading-relaxed">
+                        "O módulo de CI/CD mudou completamente como meu time trabalha. Hoje, não deixamos passar uma linha de código sem scan de segurança."
+                    </p>
+</div>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 grayscale" data-alt="Headshot of a senior software engineer in a professional tech environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjWD9JE8oJXjLBeQgY0ZFLqP5mpQlEWK9pVCWpQ2trsosTfGs1BCjV0ijU1ZS97ZKMyaojTiCzAPlvjE8FcENyK7qMzZXLqNRW_O73GMGzvU4YrcTYHq2dIHrGbXZxkaGneHkIzy4Yz3i4Tbx7HP3kVqWiU62J_hlyr7-W_iWg4pb8klaTxDFPPOL_k80tGZVWlcubHCIumfLmNZNKdf1Sddwanoz-fRlGmhWGAp8qPAZ--DEtD0ayuu9qj9O292l4HOebil682CY"/>
+<div>
+<p class="font-headline font-bold text-sm uppercase">Marcos André</p>
+<p class="font-label text-[10px] text-secondary uppercase">Tech Lead @ Global Cloud</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container-high p-8 flex flex-col justify-between border-b-4 border-primary">
+<div>
+<div class="flex gap-1 mb-4">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm italic text-on-surface-variant mb-8 leading-relaxed">
+                        "Eu achava que sabia JWT até fazer este curso. O DevSec Pro vai fundo na implementação prática e nos ataques que ninguém te conta."
+                    </p>
+</div>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 grayscale" data-alt="Headshot of a smiling female developer in a bright office space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtasqbFRi-jvMJrxLzF4d_pSJ-XuFhu_GdkZrALd8e9R5gEMV4lUgeipVdE3dtfUdD91lxCl9u_q7y_RAfApmgKnvE6p3s_k6KcTLfE08WWbm08Vumqx4KQz8bRtN5GWkAVulPFy6_GfWLM0FnfkfOpw21jn3cd7V1N9gLbLtmTu8FXx6qi-AO7sk8sVnLF0F4kXvNvJTsnaxXJ2dMv8RhJciHj_ZJHdGG8G1VdTprjOIufOZqbFT3TN5FDvz8toNIr5eFeNaL7i8"/>
+<div>
+<p class="font-headline font-bold text-sm uppercase">Julia Fontes</p>
+<p class="font-label text-[10px] text-secondary uppercase">Senior Dev @ Fintech X</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container-high p-8 flex flex-col justify-between">
+<div>
+<div class="flex gap-1 mb-4">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm italic text-on-surface-variant mb-8 leading-relaxed">
+                        "O conteúdo de Pentest é insano. Me deu uma perspectiva de segurança que 99% dos desenvolvedores não têm."
+                    </p>
+</div>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 grayscale" data-alt="Headshot of a mid-career software engineer with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4hPVLlBrhEdFPOMte5SCUyuP_1TSCmZddbhxT7FVbI5twL62BCqnQi-xxXXXVFLEjme1GKxfvfmG5jbI2XE3NQXrefvvj0tm23cQKW8f17HDWQWKYFqLlFv50ewK2VR986OXN-GORFlXQ7-VYJxhceU5bk7f-8JTNFh34pFdEioz5aD_1VK_xov8p_HlaZRyVhe2O5A4bNRnckSMgYHo0fG6TvIWHM8tadlBm-V7GubeLQQoSu0F3-Y-GqDSwWBjIBH_U3j2UCMA"/>
+<div>
+<p class="font-headline font-bold text-sm uppercase">Ricardo Lima</p>
+<p class="font-label text-[10px] text-secondary uppercase">Software Architect @ Retail Cloud</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-24 bg-surface-container-low relative" id="pricing">
+<div class="max-w-4xl mx-auto px-6">
+<div class="bg-surface-container-lowest border-2 border-primary/30 p-8 lg:p-16 relative">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-6 py-1 font-label text-xs font-bold uppercase tracking-widest">
+                    Lote de Lançamento
+                </div>
+<div class="text-center mb-12">
+<h3 class="font-headline text-4xl lg:text-5xl font-black uppercase mb-6">Acesso Completo DevSec Pro</h3>
+<div class="space-y-4">
+<p class="text-on-surface-variant line-through text-2xl decoration-tertiary">R$ 2.497,00</p>
+<p class="text-primary font-headline text-6xl lg:text-8xl font-black tracking-tighter">12x R$ 97,42</p>
+<p class="text-on-surface text-xl">ou R$ 997,00 à vista</p>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8 mb-12">
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span class="text-sm">Acesso a todos os 5 módulos principais</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span class="text-sm">Certificado de Especialista em AppSec</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<span class="text-sm">Comunidade fechada de alunos</span>
+</li>
+</ul>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="redeem">redeem</span>
+<span class="text-sm font-bold text-secondary">BÔNUS: Guia de Auditoria Interna</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="redeem">redeem</span>
+<span class="text-sm font-bold text-secondary">BÔNUS: Checklist Deploy Seguro</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="redeem">redeem</span>
+<span class="text-sm font-bold text-secondary">Aulas ao vivo bimestrais</span>
+</li>
+</ul>
+</div>
+<div class="flex flex-col items-center gap-6">
+<a class="w-full max-w-md bg-gradient-to-r from-primary to-primary-container text-on-primary text-center py-6 text-xl font-black uppercase btn-primary-glow hover:scale-[1.02] transition-transform" href="#">
+                        Garantir Minha Vaga Agora
+                    </a>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="lock">lock</span>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Pagamento Seguro &amp; 7 dias de garantia incondicional</p>
+</div>
+</div>
+<div class="mt-12 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-error-container/20 border border-error-container/50">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label text-[10px] text-error font-bold uppercase tracking-tighter">Apenas 14 vagas restantes neste lote</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 bg-background" id="faq">
+<div class="max-w-3xl mx-auto px-6">
+<h3 class="font-headline text-3xl font-bold uppercase mb-12 text-center tracking-tight">Perguntas Frequentes</h3>
+<div class="space-y-4">
+<details class="group bg-surface-container-high p-6 border-l-4 border-outline-variant hover:border-primary transition-all cursor-pointer">
+<summary class="flex justify-between items-center font-headline font-bold uppercase list-none">
+                        Preciso saber Java, Python ou Node?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-4 text-on-surface-variant text-sm leading-relaxed">
+                        Sim, é recomendado ter conhecimento básico em pelo menos uma dessas linguagens. No entanto, os conceitos de DevSec Pro são universais. Utilizamos exemplos poliglota para que você possa aplicar em qualquer stack tecnológica.
+                    </div>
+</details>
+<details class="group bg-surface-container-high p-6 border-l-4 border-outline-variant hover:border-primary transition-all cursor-pointer">
+<summary class="flex justify-between items-center font-headline font-bold uppercase list-none">
+                        Quanto tempo dura o acesso?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-4 text-on-surface-variant text-sm leading-relaxed">
+                        O acesso ao curso e a todas as futuras atualizações é vitalício. Você pode estudar no seu ritmo e revisar o conteúdo sempre que precisar enfrentar um novo desafio de segurança.
+                    </div>
+</details>
+<details class="group bg-surface-container-high p-6 border-l-4 border-outline-variant hover:border-primary transition-all cursor-pointer">
+<summary class="flex justify-between items-center font-headline font-bold uppercase list-none">
+                        O certificado é reconhecido?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-4 text-on-surface-variant text-sm leading-relaxed">
+                        Sim. Emitimos um certificado de conclusão com carga horária de 80 horas, reconhecido em todo o território nacional e aceito por grandes empresas como prova de especialização técnica em Segurança de Aplicações.
+                    </div>
+</details>
+<details class="group bg-surface-container-high p-6 border-l-4 border-outline-variant hover:border-primary transition-all cursor-pointer">
+<summary class="flex justify-between items-center font-headline font-bold uppercase list-none">
+                        Tem suporte técnico para dúvidas?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-4 text-on-surface-variant text-sm leading-relaxed">
+                        Com certeza. Temos uma plataforma de suporte dedicada e uma comunidade de alunos ativa no Discord, onde o instrutor e os tutores respondem diariamente.
+                    </div>
+</details>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#000000] border-t border-[#1b2028] w-full py-12 px-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
+<div class="flex flex-col gap-2">
+<span class="text-lg font-bold text-[#9cff93] font-headline uppercase tracking-tighter">DevSec Pro</span>
+<p class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-slate-500">© 2024 DEVSEC PRO // ALL PROTOCOLS RESERVED</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-slate-500 hover:text-[#9cff93] transition-colors" href="#">Privacidade</a>
+<a class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-slate-500 hover:text-[#9cff93] transition-colors" href="#">Termos de Uso</a>
+<a class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-slate-500 hover:text-[#9cff93] transition-colors" href="#">Certificado</a>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-[#00cffc] transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</a>
+<a class="text-slate-500 hover:text-[#00cffc] transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</a>
+<a class="text-slate-500 hover:text-[#00cffc] transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>
